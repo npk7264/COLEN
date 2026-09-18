@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Nunito -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #fefae0 0%, #faedcd 50%, #e9edc9 100%);
+            overflow-x: hidden;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(1deg);
+            }
+        }
+
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.03);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-float {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #faedcd;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ccd5ae;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 text-stone-700">
+
+    <header
+        class="w-full max-w-2xl flex justify-between items-center mb-4 bg-white/85 backdrop-blur-md px-6 py-3 rounded-full shadow-sm border border-amber-100">
+        <div class="flex items-center space-x-2">
+            <span class="text-2xl animate-bounce">🦥</span>
+            <h1 class="font-extrabold text-base sm:text-lg text-amber-900 tracking-wide"></h1>
+        </div>
+        <div class="flex items-center space-x-3">
+            <button id="soundToggle" onclick="toggleSound()"
+                class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow-xs cursor-pointer">
+                <i class="fa-solid fa-music"></i> <span id="soundText">Bật Nhạc</span>
+            </button>
+        </div>
+    </header>
+
+    <main
+        class="w-full max-w-2xl bg-white/95 backdrop-blur-md rounded-3xl shadow-xl border-4 border-amber-100 p-5 sm:p-8 flex flex-col items-center relative overflow-hidden min-h-[520px] justify-between">
+
+        <!-- Ambient Background Glow -->
+        <div class="absolute -top-10 -left-10 w-32 h-32 bg-amber-200/40 rounded-full blur-2xl pointer-events-none">
+        </div>
+        <div
+            class="absolute -bottom-10 -right-10 w-36 h-36 bg-emerald-200/40 rounded-full blur-2xl pointer-events-none">
+        </div>
+
+        <!-- Progress Indicator Dots -->
+        <div class="w-full flex justify-center items-center gap-2 mb-3">
+            <div id="dot-1" class="h-2.5 w-8 rounded-full bg-amber-500 transition-all duration-300"></div>
+            <div id="dot-2" class="h-2.5 w-2.5 rounded-full bg-amber-200 transition-all duration-300"></div>
+            <div id="dot-3" class="h-2.5 w-2.5 rounded-full bg-amber-200 transition-all duration-300"></div>
+            <div id="dot-4" class="h-2.5 w-2.5 rounded-full bg-amber-200 transition-all duration-300"></div>
+            <div id="dot-5" class="h-2.5 w-2.5 rounded-full bg-amber-200 transition-all duration-300"></div>
+        </div>
+
+        <!-- ================= SCENE 1 ================= -->
+        <div id="scene-1"
+            class="scene-container w-full flex flex-col items-center text-center transition-all duration-500">
+            <div class="relative my-3 w-full max-w-xs sm:max-w-sm">
+                <div
+                    class="w-full h-52 sm:h-56 bg-amber-50 rounded-2xl border-2 border-amber-200 shadow-inner overflow-hidden flex items-center justify-center relative p-2">
+                    <img src="im1.png" alt="Chú lười trúng gió nằm bệnh"
+                        class="w-full h-full object-cover rounded-xl shadow-sm"
+                        onerror="this.src='https://placehold.co/400x300/fefae0/d4a373?text=Sloth+In+Bed+🤒'">
+                </div>
+            </div>
+
+
+            <p class="text-stone-600 max-w-md text-xs sm:text-sm leading-relaxed mb-3">
+                Mùa mưa nọ, có chú lười bị bệnh nên phải nằm trên giường nghỉ ngơi, hông được đi chơi
+            </p>
+        </div>
+
+        <!-- ================= SCENE 2 ================= -->
+        <div id="scene-2"
+            class="scene-container w-full hidden flex-col items-center text-center transition-all duration-500">
+            <div class="relative my-3 w-full max-w-xs sm:max-w-sm">
+                <div
+                    class="w-full h-52 sm:h-56 bg-emerald-50 rounded-2xl border-2 border-emerald-200 shadow-inner overflow-hidden flex items-center justify-center relative p-2">
+                    <img src="im2.png" alt="Chú lười nhớ kỉ niệm tự do leo trèo"
+                        class="w-full h-full object-cover rounded-xl shadow-sm"
+                        onerror="this.src='https://placehold.co/400x300/e9edc9/283618?text=Forest+Freedom+🌳'">
+                </div>
+            </div>
+
+
+            <p class="text-stone-600 max-w-md text-xs sm:text-sm leading-relaxed mb-3">
+                Hông được tung tăng! Chú lười cứ tưởng tượng và nhớ lại những khoảnh khắc tự do leo trèo, đu đưa trên
+                cành cây cao và rong chơi khắp chốn trong khu rừng xanh mát
+            </p>
+        </div>
+
+        <!-- ================= SCENE 3 ================= -->
+        <div id="scene-3"
+            class="scene-container w-full hidden flex-col items-center text-center transition-all duration-500">
+            <div class="relative my-3 w-full max-w-xs sm:max-w-sm">
+                <div
+                    class="w-full h-52 sm:h-56 bg-pink-50 rounded-2xl border-2 border-pink-200 shadow-inner overflow-hidden flex items-center justify-center relative p-2">
+                    <img src="im3.png" alt="Mẹ lười chăm sóc dặn dò"
+                        class="w-full h-full object-cover rounded-xl shadow-sm"
+                        onerror="this.src='https://placehold.co/400x300/faedcd/bc6c25?text=Mom+Sloth+Care+🥣'">
+                </div>
+            </div>
+
+
+            <p class="text-stone-600 max-w-md text-xs sm:text-sm leading-relaxed mb-3">
+                Mẹ dặn ăn ngoan, uống thuốc rồi mẹ cho đi chơi
+            </p>
+        </div>
+
+        <!-- ================= SCENE 4 ================= -->
+        <div id="scene-4"
+            class="scene-container w-full hidden flex-col items-center text-center transition-all duration-500">
+            <div class="relative my-3 w-full max-w-xs sm:max-w-sm">
+                <div
+                    class="w-full h-52 sm:h-56 bg-amber-50 rounded-2xl border-2 border-amber-200 shadow-inner overflow-hidden flex items-center justify-center relative p-2">
+                    <img src="im4.png" alt="Chú lười chiến thắng bệnh tật"
+                        class="w-full h-full object-cover rounded-xl shadow-sm"
+                        onerror="this.src='https://placehold.co/400x300/fefae0/dda15e?text=Victory+Smile+✨'">
+                </div>
+            </div>
+
+
+            <p class="text-stone-600 max-w-md text-xs sm:text-sm leading-relaxed mb-3">
+                Nghe lời mẹ nên chú lười tươi tắn, sức mạnh tăng lên.
+            </p>
+        </div>
+
+        <!-- ================= SCENE 5 ================= -->
+        <div id="scene-5"
+            class="scene-container w-full hidden flex-col items-center text-center transition-all duration-500">
+            <div class="w-full bg-amber-50/90 p-5 rounded-2xl border border-amber-200 shadow-sm mb-4">
+                <div id="displayMessage"
+                    class="text-stone-700 text-xs sm:text-sm italic mb-3 bg-white p-3.5 rounded-xl shadow-inner border border-amber-100 min-h-[60px] flex items-center justify-center">
+                    "Ờ Tí Nỵ Anh Anh mau khỏe nha!"
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Navigation Buttons -->
+        <div id="navButtons" class="w-full flex justify-between items-center mt-3 pt-3 border-t border-stone-100">
+            <button id="prevBtn" onclick="changeScene(-1)"
+                class="px-4 py-2 rounded-full font-bold text-xs sm:text-sm bg-stone-100 hover:bg-stone-200 text-stone-600 transition flex items-center gap-1 opacity-50 cursor-not-allowed"
+                disabled>
+                <i class="fa-solid fa-chevron-left"></i> Quay lại
+            </button>
+            <span id="stepCounter" class="text-xs font-bold text-stone-400"></span>
+            <button id="nextBtn" onclick="changeScene(1)"
+                class="px-5 py-2 rounded-full font-bold text-xs sm:text-sm bg-amber-600 hover:bg-amber-700 text-white transition flex items-center gap-1 shadow-xs cursor-pointer">
+                Tiếp tục <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        let currentScene = 1;
+        const totalSteps = 5; // 4 story scenes + 1 wish card
+        let isAudioPlaying = false;
+        let audioCtx = null;
+
+        function updateSceneView() {
+            for (let i = 1; i <= 5; i++) {
+                const scene = document.getElementById(`scene-${i}`);
+                if (scene) {
+                    scene.classList.add('hidden');
+                    scene.classList.remove('flex');
+                }
+                const dot = document.getElementById(`dot-${i}`);
+                if (dot) {
+                    dot.className = "h-2.5 w-2.5 rounded-full bg-amber-200 transition-all duration-300";
+                }
+            }
+
+            const activeScene = document.getElementById(`scene-${currentScene}`);
+            if (activeScene) {
+                activeScene.classList.remove('hidden');
+                activeScene.classList.add('flex');
+            }
+
+            for (let i = 1; i <= Math.min(currentScene, 4); i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (dot) {
+                    dot.className = i === currentScene ? "h-2.5 w-8 rounded-full bg-amber-500 transition-all duration-300" : "h-2.5 w-2.5 rounded-full bg-amber-400 transition-all duration-300";
+                }
+            }
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const navButtons = document.getElementById('navButtons');
+
+            if (currentScene === 5) {
+                navButtons.style.display = 'none';
+            } else {
+                navButtons.style.display = 'flex';
+
+                if (currentScene === 1) {
+                    prevBtn.disabled = true;
+                    prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                } else {
+                    prevBtn.disabled = false;
+                    prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+
+                if (currentScene === 5) {
+                    nextBtn.innerHTML = `Gửi Lời Chúc <i class="fa-solid fa-heart text-pink-200"></i>`;
+                } else {
+                    nextBtn.innerHTML = `Tiếp tục <i class="fa-solid fa-chevron-right"></i>`;
+                }
+            }
+        }
+
+        function changeScene(direction) {
+            currentScene += direction;
+            if (currentScene < 1) currentScene = 1;
+            if (currentScene > 5) currentScene = 5;
+            updateSceneView();
+            playChimeSound();
+        }
+
+        function restartStory() {
+            currentScene = 1;
+            updateSceneView();
+            playChimeSound();
+        }
+
+        function updateMessage() {
+            const input = document.getElementById('customInput');
+            const display = document.getElementById('displayMessage');
+            if (input.value.trim() !== "") {
+                display.innerText = `"${input.value}"`;
+                input.value = "";
+                showToast("Đã lưu lời chúc yêu thương thành công! 💖");
+            }
+        }
+
+        function triggerConfetti() {
+            showToast("Gửi tới Nhan Nhan một cái ôm thật chặt và ngập tràn năng lượng lành bệnh! 🤗✨");
+            const card = document.querySelector('main');
+            card.classList.add('scale-102', 'border-pink-300');
+            setTimeout(() => {
+                card.classList.remove('scale-102', 'border-pink-300');
+            }, 400);
+        }
+
+        function showToast(text) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-stone-900/90 text-white px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-xl z-50 transition-all duration-300 animate-bounce";
+            toast.innerText = text;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        function toggleSound() {
+            isAudioPlaying = !isAudioPlaying;
+            const soundText = document.getElementById('soundText');
+            if (isAudioPlaying) {
+                soundText.innerText = "Tắt Nhạc";
+                startAmbientMusic();
+            } else {
+                soundText.innerText = "Bật Nhạc";
+                stopAmbientMusic();
+            }
+        }
+
+        let ambientInterval = null;
+        function startAmbientMusic() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            playNote(523.25, 0.5);
+            ambientInterval = setInterval(() => {
+                if (!isAudioPlaying) return;
+                const notes = [523.25, 587.33, 659.25, 783.99, 880.00];
+                const randomNote = notes[Math.floor(Math.random() * notes.length)];
+                playNote(randomNote, 0.8);
+            }, 1200);
+        }
+
+        function stopAmbientMusic() {
+            if (ambientInterval) {
+                clearInterval(ambientInterval);
+                ambientInterval = null;
+            }
+        }
+
+        function playNote(frequency, duration) {
+            if (!audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = frequency;
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) { }
+        }
+
+        function playChimeSound() {
+            if (!isAudioPlaying) return;
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880.00, audioCtx.currentTime + 0.3);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.3);
+            } catch (e) { }
+        }
+    </script>
+</body>
+
+</html>
