@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Nhật ký mùa mưa</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Nunito -->
@@ -86,21 +86,24 @@
             }
         }
 
+        /* --- ĐÃ TĂNG KÍCH THƯỚC NÚT ĐỂ DỄ BẤM TRÊN ĐIỆN THOẠI --- */
         .btn-base {
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.25rem; /* Tăng khoảng đệm rộng hơn */
             border-radius: 9999px;
             font-weight: 700;
-            font-size: 0.75px;
+            font-size: 0.9rem; /* Tăng cỡ chữ to hơn rõ ràng */
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: 0.5rem;
             cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         @media (min-width: 640px) {
             .btn-base {
-                font-size: 0.875rem;
+                font-size: 1rem;
+                padding: 0.75rem 1.5rem;
             }
         }
 
@@ -123,12 +126,13 @@
 <body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 text-stone-700">
 
     <!-- Nhạc nền -->
-    <audio autoplay loop id="playAudio">
+    <audio loop id="playAudio">
         <source src="music.mp3" type="audio/mp3" />
     </audio>
 
     <header class="glass-header">
         <div class="flex items-center space-x-2">
+            <span class="text-xl">🦥</span>
             <h1 class="font-extrabold text-xs sm:text-sm text-amber-900 tracking-wide">Nhật ký mùa mưa</h1>
         </div>
     </header>
@@ -152,7 +156,7 @@
             <div id="dot-6" class="h-2.5 w-2.5 rounded-full bg-amber-200 transition-all duration-300"></div>
         </div>
 
-        <!-- ================= SCENE MỚI (Ở ĐẦU) ================= -->
+        <!-- ================= SCENE 1 ================= -->
         <div id="scene-1"
             class="scene-container w-full flex flex-col items-center text-center transition-all duration-500">
             <div class="relative my-3 w-full max-w-xs sm:max-w-sm">
@@ -240,14 +244,11 @@
 
                 <!-- Chat Body -->
                 <div class="flex flex-col gap-3 py-2">
-                    <!-- Tin nhắn từ hệ thống/người gửi -->
-                    <!-- Lời chúc -->
                     <div class="flex items-end justify-end gap-2">
                         <div
                             class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-3 rounded-2xl rounded-br-sm shadow-md max-w-[85%] relative overflow-hidden">
-                            <!-- Hiệu ứng lấp lánh nhẹ -->
                             <div class="absolute -right-4 -bottom-4 w-12 h-12 bg-white/10 rounded-full blur-md"></div>
-                            <div id="displayMessage" class="text-xs sm:text-sm font-semibold tracking-wide">
+                            <div class="text-xs sm:text-sm font-semibold tracking-wide">
                                 Truyện tự chế độc giả đừng chê
                             </div>
                         </div>
@@ -255,16 +256,14 @@
                     <div class="flex items-end justify-end gap-2">
                         <div
                             class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-3 rounded-2xl rounded-br-sm shadow-md max-w-[85%] relative overflow-hidden">
-                            <!-- Hiệu ứng lấp lánh nhẹ -->
                             <div class="absolute -right-4 -bottom-4 w-12 h-12 bg-white/10 rounded-full blur-md"></div>
-                            <div id="displayMessage" class="text-xs sm:text-sm font-semibold tracking-wide">
+                            <div class="text-xs sm:text-sm font-semibold tracking-wide">
                                 Mau khỏe nha
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Input giả lập hoặc nhãn trạng thái đã xem -->
                 <div class="flex items-center justify-end pt-1 px-1 text-[11px] text-stone-400">
                     <span><i class="fa-solid fa-check-double text-blue-500 mr-1"></i> Đã nhận chưa ko biết</span>
                 </div>
@@ -329,21 +328,20 @@
 
             navButtons.style.display = 'flex';
 
-            // --- XỬ LÝ NÚT Xem lại (GIỮ LẠI, LÀM MỜ VÀ VÔ HIỆU HÓA Ở SCENE 1) ---
+            // --- XỬ LÝ NÚT XEM LẠI (MỜ VÀ VÔ HIỆU HÓA Ở SCENE 1) ---
             if (currentScene === 1) {
-                prevBtn.style.display = 'flex';       // Luôn hiển thị nút
-                prevBtn.disabled = true;              // Vô hiệu hóa tính năng bấm
-                prevBtn.classList.add('opacity-40', 'cursor-not-allowed'); // Làm mờ và đổi con trỏ chuột
-                prevBtn.classList.remove('hover:bg-stone-200'); // Tắt hiệu ứng hover khi bị disable
+                prevBtn.style.display = 'flex';
+                prevBtn.disabled = true;
+                prevBtn.classList.add('opacity-40', 'cursor-not-allowed');
+                prevBtn.classList.remove('hover:bg-stone-200');
             } else {
                 prevBtn.style.display = 'flex';
-                prevBtn.disabled = false;             // Cho phép bấm bình thường ở các scene giữa
+                prevBtn.disabled = false;
                 prevBtn.classList.remove('opacity-40', 'cursor-not-allowed');
                 prevBtn.classList.add('hover:bg-stone-200');
             }
 
-            // --- XỬ LÝ RIÊNG CHO NÚT Xem típ ---
-            // Nếu đang ở scene cuối -> Ẩn nút Xem típ
+            // --- XỬ LÝ NÚT XEM TÍP (ẨN Ở SCENE CUỐI) ---
             if (currentScene === totalSteps) {
                 nextBtn.style.display = 'none';
             } else {
@@ -352,7 +350,6 @@
         }
 
         function changeScene(direction) {
-            // Kiểm tra bảo mật phụ: Nếu nút đang bị disable thì không cho thực hiện hàm đổi scene
             const prevBtn = document.getElementById('prevBtn');
             if (direction === -1 && prevBtn.disabled) return;
 
@@ -362,10 +359,10 @@
             updateSceneView();
         }
 
-        // Init load
+        // Khởi chạy lần đầu khi load trang
         updateSceneView();
 
-        // Phát nhạc
+        // Tự động phát nhạc ngay sau cú chạm/click đầu tiên
         function musicPlay() {
             const audio = document.getElementById("playAudio");
             if (audio) {
