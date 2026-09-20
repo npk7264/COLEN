@@ -330,12 +330,17 @@
 
             navButtons.style.display = 'flex';
 
-            // --- XỬ LÝ RIÊNG CHO NÚT QUAY LẠI ---
-            // Nếu đang ở Scene 1 HOẶC Scene cuối (Scene 6) -> Ẩn hoàn toàn nút Quay lại
-            if (currentScene === 1 || currentScene === totalSteps) {
-                prevBtn.style.display = 'none';
+            // --- XỬ LÝ NÚT QUAY LẠI (GIỮ LẠI, LÀM MỜ VÀ VÔ HIỆU HÓA Ở SCENE 1) ---
+            if (currentScene === 1) {
+                prevBtn.style.display = 'flex';       // Luôn hiển thị nút
+                prevBtn.disabled = true;              // Vô hiệu hóa tính năng bấm
+                prevBtn.classList.add('opacity-40', 'cursor-not-allowed'); // Làm mờ và đổi con trỏ chuột
+                prevBtn.classList.remove('hover:bg-stone-200'); // Tắt hiệu ứng hover khi bị disable
             } else {
                 prevBtn.style.display = 'flex';
+                prevBtn.disabled = false;             // Cho phép bấm bình thường ở các scene giữa
+                prevBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+                prevBtn.classList.add('hover:bg-stone-200');
             }
 
             // --- XỬ LÝ RIÊNG CHO NÚT Xem típ ---
@@ -348,16 +353,20 @@
         }
 
         function changeScene(direction) {
+            // Kiểm tra bảo mật phụ: Nếu nút đang bị disable thì không cho thực hiện hàm đổi scene
+            const prevBtn = document.getElementById('prevBtn');
+            if (direction === -1 && prevBtn.disabled) return;
+
             currentScene += direction;
             if (currentScene < 1) currentScene = 1;
             if (currentScene > totalSteps) currentScene = totalSteps;
             updateSceneView();
         }
 
-        // Khởi chạy lần đầu khi load trang
+        // Init load
         updateSceneView();
 
-        // Tự động kích hoạt nhạc
+        // Phát nhạc
         function musicPlay() {
             const audio = document.getElementById("playAudio");
             if (audio) {
