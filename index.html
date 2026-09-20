@@ -275,7 +275,7 @@
         <div id="navButtons" class="w-full flex justify-between items-center mt-3 pt-3 border-t border-stone-100">
             <button id="prevBtn" onclick="changeScene(-1)"
                 class="btn-base bg-stone-100 hover:bg-stone-200 text-stone-600">
-                <i class="fa-solid fa-chevron-left"></i> Quay lại
+                <i class="fa-solid fa-chevron-left"></i> Xem lại
             </button>
             <span id="stepCounter" class="text-xs font-bold text-stone-400"></span>
             <button id="nextBtn" onclick="changeScene(1)"
@@ -329,7 +329,7 @@
 
             navButtons.style.display = 'flex';
 
-            // --- XỬ LÝ NÚT QUAY LẠI (GIỮ LẠI, LÀM MỜ VÀ VÔ HIỆU HÓA Ở SCENE 1) ---
+            // --- XỬ LÝ NÚT Xem lại (GIỮ LẠI, LÀM MỜ VÀ VÔ HIỆU HÓA Ở SCENE 1) ---
             if (currentScene === 1) {
                 prevBtn.style.display = 'flex';       // Luôn hiển thị nút
                 prevBtn.disabled = true;              // Vô hiệu hóa tính năng bấm
